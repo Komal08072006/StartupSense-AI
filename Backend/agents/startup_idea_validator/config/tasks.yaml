@@ -1,0 +1,84 @@
+---
+market_research_report:
+  description: |-
+    Research the startup idea: {startup_idea}. Using web search, gather:
+    1. **SAM Estimate** — Find credible market size data and estimate the Serviceable Addressable Market with sources. Express all financial/market size numbers in Indian Rupees (₹ / INR) using Indian notation (e.g. Lakhs, Crores, ₹ Cr).
+    2. **Target Audience Profile** — Define key demographics (age, income, geography) and psychographics (motivations, pain points, behaviors).
+    3. **Top 2 Competitors** — Identify the 2 most relevant competitors, including their positioning, pricing (in Indian Rupees ₹ / INR), and key features.
+    4. **Feature Comparison Matrix** — Build a plain markdown table (NO code blocks, NO backtick fences) comparing {startup_idea} (hypothetical) vs. the 2 competitors across 5–7 key features.
+
+    Important formatting rules:
+    - All tables must be plain markdown tables, never wrapped in code blocks or backtick fences.
+    - Use proper markdown headers (##, ###) for each section.
+  expected_output: 'A structured markdown report with four clearly labeled sections:
+    SAM Estimate (with data sources), Target Audience Profile, Competitor Profiles
+    (2 competitors), and a Feature Comparison Matrix as a plain markdown table (not
+    inside a code block).'
+  agent: market_research_analyst
+business_strategy_report:
+  description: |-
+    Based on the market research findings, develop a full business model for {startup_idea}. Cover:
+    1. **Monetization Channels** — List all revenue channels with estimated percentage weights (must sum to 100%). E.g., SaaS subscriptions 60%, in-app ads 20%, partnerships 20%.
+    2. **Revenue Streams** — Describe each stream in detail (pricing tiers in INR/₹, transaction models, etc.).
+    3. **Cost Structure** — Identify fixed and variable costs in Indian Rupees (infrastructure, team, marketing, etc.).
+    4. **Customer Segments** — Define distinct customer segments and their willingness to pay (in Indian Rupees ₹ / INR).
+    Use web search to benchmark against similar business models in the industry. Express all financials/prices in Indian Rupees (₹ / INR).
+  expected_output: 'A structured markdown report with four sections: Monetization
+    Channels (with % weights), Revenue Streams, Cost Structure, and Customer Segments.'
+  agent: business_strategist_planner
+  context:
+  - market_research_report
+product_tech_report:
+  description: |-
+    Using the market research as context, define the product and technical blueprint for {startup_idea}:
+    1. **MVP Features** — List the top 5–7 core features for the first version, with a one-line description each.
+    2. **Unique Value Proposition (UVP)** — Write a crisp, compelling UVP statement (1–2 sentences).
+    3. **Recommended Tech Stack** — Suggest frontend, backend, database, AI/ML (if applicable), infrastructure, and key third-party APIs/services.
+    4. **Risk Register** — Identify 4–6 technical and business risks, each with likelihood (High/Medium/Low), impact (High/Medium/Low), and a mitigation strategy.
+    Use web search to validate tech stack choices and identify emerging risks in the space. Express any monetary or cost estimates in Indian Rupees (₹ / INR).
+  expected_output: 'A structured markdown report with four sections: MVP Features,
+    Unique Value Proposition, Recommended Tech Stack, and Risk Register (as a table).'
+  agent: product_manager_technologist
+  context:
+  - market_research_report
+swot_analysis:
+  description: |-
+    Synthesize all previous research into a thorough SWOT analysis for {startup_idea}:
+    1. **Strengths** — Internal advantages (product, team, technology, timing).
+    2. **Weaknesses** — Internal limitations (gaps in product, resources, expertise).
+    3. **Opportunities** — External market trends, unmet needs, or tailwinds to leverage.
+    4. **Threats** — External risks (competition, regulation, market shifts).
+    5. **Actionable Recommendations** — Provide 3–5 specific, prioritized recommendations the founding team should act on in the next 90 days.
+  expected_output: A structured markdown SWOT analysis with clearly labeled sections
+    for Strengths, Weaknesses, Opportunities, Threats (each with 3–5 bullet points),
+    and a numbered list of 3–5 Actionable Recommendations.
+  agent: swot_analyst
+  context:
+  - market_research_report
+final_business_plan:
+  description: |-
+    Compile all prior agent reports into a single, unified, polished business plan for {startup_idea}. Your job is to:
+    1. Merge all sections into a cohesive document — do NOT omit any subsection, including the Risk Register table from the Product & Tech report.
+    2. Eliminate redundancies and ensure consistent tone, terminology, and formatting throughout.
+    3. Add an **Executive Summary** at the top (150–200 words) that captures the essence of the idea, the opportunity, and the plan.
+    4. Add a **Conclusion** at the bottom with a bold closing statement on the viability of {startup_idea}.
+    5. All markdown tables must be plain markdown tables — never wrapped in code blocks or backtick fences.
+    6. The Product & Technology section must include all subsections: MVP Features, UVP, full Tech Stack breakdown, and the complete Risk Register table.
+    7. Express all financial values, market sizes, and pricing in Indian Rupees (₹ / INR) instead of USD/dollars.
+    8. The final output must read as a professional, investor-ready business plan.
+  expected_output: |-
+    A single, comprehensive, well-formatted markdown business plan with these sections in order:
+    1. Executive Summary
+    2. Market Analysis (SAM, Target Audience, Competitors, Feature Comparison Matrix)
+    3. Business Strategy (Monetization Channels, Revenue Streams, Cost Structure, Customer Segments)
+    4. Product & Technology (MVP Features, UVP, Tech Stack, Risk Register table)
+    5. SWOT Analysis & Recommendations (Strengths, Weaknesses, Opportunities, Threats, Actionable Recommendations)
+    6. Conclusion
+
+    All tables must be plain markdown. No section or subsection from the context may be omitted.
+  agent: startup_chief_editor
+  context:
+  - market_research_report
+  - business_strategy_report
+  - product_tech_report
+  - swot_analysis
