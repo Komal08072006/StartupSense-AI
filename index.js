@@ -1406,7 +1406,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 150);
 
     try {
-      const response = await fetch('http://127.0.0.1:5000/generate-startup', {
+      const apiBaseUrl = import.meta.env.VITE_API_URL || 'http://127.0.0.1:5000';
+      const response = await fetch(`${apiBaseUrl}/generate-startup`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
