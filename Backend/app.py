@@ -1,4 +1,5 @@
 import os
+import sys
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from dotenv import load_dotenv
@@ -6,6 +7,10 @@ from dotenv import load_dotenv
 # Get the path to Backend/.env file
 backend_dir = os.path.dirname(os.path.abspath(__file__))
 dotenv_path = os.path.join(backend_dir, '.env')
+
+# Add Backend directory to sys.path to allow absolute imports of agents package
+if backend_dir not in sys.path:
+    sys.path.append(backend_dir)
 
 # Load environmental variables
 load_dotenv(dotenv_path, override=True)
